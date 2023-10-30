@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.2</version>
+		<version>2.7.17</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>org.neo4j.test</groupId>
 			<artifactId>neo4j-harness</artifactId>
-			<version>4.4.13</version>
+			<version>5.13.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

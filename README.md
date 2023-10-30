@@ -47,6 +47,31 @@ Neo4j 4.4 is tied to JDK 11.
 Congratulations, you have a very close coupling of your application, JDK and test infrastructure.
 You could now upgrade the tests to use Neo4j 5.x embedded, too, but that would dillute your testing even more, as you might not have upgraded your server itself.
 
+## Step 2b:
+
+Try to upgrade to Neo4j Test Harness 5:
+If you pick Neo4j version 5.10, things actually do work, Neo4j 5.11 and higher will break as an embedded dependency on Spring Boot 3.1 and higher due to some dependencies (Jetty and logging) not playing along nice:
+
+```
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.514 s <<< FAILURE! - in com.example.neo4jxtestcontainers.RepositoryTests
+[ERROR] com.example.neo4jxtestcontainers.RepositoryTests  Time elapsed: 6.514 s  <<< ERROR!
+java.lang.RuntimeException: Error starting Neo4j database server at /var/folders/_y/ms08hd653_n_qgljb3svns100000gq/T/9ce05eaa1e2cfacea0bf87fc73ad9042/data/databases
+	at com.example.neo4jxtestcontainers.RepositoryTests.startNeo4j(RepositoryTests.java:25)
+Caused by: org.neo4j.kernel.lifecycle.LifecycleException: Component 'org.neo4j.server.AbstractNeoWebServer$ServerComponentsLifecycleAdapter@7c5f29c6' failed to initialize. Please see the attached cause exception "org.eclipse.jetty.http.HttpURI$Mutable".
+	at com.example.neo4jxtestcontainers.RepositoryTests.startNeo4j(RepositoryTests.java:25)
+Caused by: java.lang.NoClassDefFoundError: org/eclipse/jetty/http/HttpURI$Mutable
+	at com.example.neo4jxtestcontainers.RepositoryTests.startNeo4j(RepositoryTests.java:25)
+Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.http.HttpURI$Mutable
+	at com.example.neo4jxtestcontainers.RepositoryTests.startNeo4j(RepositoryTests.java:25)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   RepositoryTests.startNeo4j:25 » Runtime Error starting Neo4j database server a...
+```
+
+=> You should really decouple these things.
 
 ## Misc
 
