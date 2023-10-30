@@ -99,6 +99,11 @@ Note: No more tons of Testcontainers logging, without having to maintain an adap
 
 Use Spring Boot 3.1 Testcontainers integration and `ServiceConnection`.
 
+## Step 6:
+
+This all works nicely in GraalVM Native image, too.
+You just need to add the appropriate plugin, which is also managed by Boot.
+
 ## Misc
 
 ### Dependencies of Neo4j 4.4 test harness
