@@ -20,7 +20,7 @@ class RepositoryTests {
 
 	@BeforeAll
 	static void startNeo4j() {
-		neo4j = new Neo4jContainer<>("neo4j:4.4")
+		neo4j = new Neo4jContainer<>("neo4j:5.13")
 			.waitingFor(Neo4jContainer.WAIT_FOR_BOLT)
 			.withReuse(true);
 		neo4j.start();

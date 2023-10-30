@@ -84,6 +84,10 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.http.HttpURI$Muta
 
 Upgrading the database version is now as easy as pointing to another image.
 
+## Step 3b:
+
+For example to Neo4j 5.13, applications stays unchanged, just as it should.
+
 ## Misc
 
 ### Dependencies of Neo4j 4.4 test harness
