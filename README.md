@@ -6,7 +6,7 @@ Example repository for the Neo4j X Testcontainers livestream on Thursday, 2023-1
 
 Homegrown repository, that uses Neo4j Java driver directly, without involving any mapping framework to keep things simple. The repository merges a movie under the `title` property, nothing fancy, really. Shouldn't distract from what we wanna show for the test.
 
-## Step one:
+## Step 1:
 
 Spring Boot 2.7 project, running on Java 11.
 The Project uses `org.neo4j.test:neo4j-harness`, our official test harness, latest 4.4 version.
@@ -22,6 +22,31 @@ Less so for any application that uses a network  connection like ours.
 - Being a JVM product makes embedding easy, but comes at a cost:
     - Neo4j has a lot of dependencies (See below)
     - Neo4j is usually tied very close to a Java version, as we do a lot to optimize our product and need often to reach out to Unsafe, Off-Heap memory and the like: Nothing you want to spread into your application or even test code
+
+## Step 2a:
+
+Try to upgrade to Spring Boot 3.1 and Java 17.
+
+Things fail with
+
+```
+Caused by: java.lang.IllegalAccessException: module java.base does not open java.nio to unnamed module @6b09bb57
+	at java.base/java.lang.invoke.MethodHandles.privateLookupIn(MethodHandles.java:259)
+	at org.neo4j.internal.unsafe.UnsafeUtil.<clinit>(UnsafeUtil.java:111)
+	... 72 more
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   RepositoryTests.startNeo4j:25 » Linkage Cannot to link java.nio.DirectByteBuffer
+```
+
+Neo4j 4.4 is tied to JDK 11.
+
+Congratulations, you have a very close coupling of your application, JDK and test infrastructure.
+You could now upgrade the tests to use Neo4j 5.x embedded, too, but that would dillute your testing even more, as you might not have upgraded your server itself.
+
 
 ## Misc
 
