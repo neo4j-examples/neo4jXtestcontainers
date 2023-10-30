@@ -88,6 +88,13 @@ Upgrading the database version is now as easy as pointing to another image.
 
 For example to Neo4j 5.13, applications stays unchanged, just as it should.
 
+## Step 4:
+
+Upgrade to Spring Boot 3.1 and Java 17: No issues here anymore, either.
+Also, Spring Boot now does manage Testcontainer dependencies.
+
+Note: No more tons of Testcontainers logging, without having to maintain an adapter logging conf!
+
 ## Misc
 
 ### Dependencies of Neo4j 4.4 test harness
