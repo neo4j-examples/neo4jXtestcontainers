@@ -95,6 +95,10 @@ Also, Spring Boot now does manage Testcontainer dependencies.
 
 Note: No more tons of Testcontainers logging, without having to maintain an adapter logging conf!
 
+## Step 5:
+
+Use Spring Boot 3.1 Testcontainers integration and `ServiceConnection`.
+
 ## Misc
 
 ### Dependencies of Neo4j 4.4 test harness
