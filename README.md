@@ -73,6 +73,17 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.http.HttpURI$Muta
 
 => You should really decouple these things.
 
+## Step 3:
+
+- First let's go back to step one, postpone upgrading Spring Boot and Java.
+- Introduce the necessary Testcontainer dependencies (via their Bom).
+- Remove Test Harness dependencies.
+- Adapt the test
+
+=> Builds happily with Spring Boot and Java 11.
+
+Upgrading the database version is now as easy as pointing to another image.
+
 ## Misc
 
 ### Dependencies of Neo4j 4.4 test harness
